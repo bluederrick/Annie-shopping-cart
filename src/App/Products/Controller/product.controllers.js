@@ -2,8 +2,8 @@ import {
   createProductsService,
   deleteProductService,
   getAllProductServices
-} from './products.service.js';
-// Get  or retrieve All products 
+} from '../Service/products.service.js';
+// Get  or retrieve All products
 export const productController = async (req, res) => {
   const services = await getAllProductServices();
   console.log(services);

@@ -1,13 +1,10 @@
-import Product from '../../Models/Products.js';
-import customError from '../../Utilitiy/customImpl.js';
+import Product from '../../../Models/Products.js';
+import customError from '../../../Utilitiy/customImpl.js';
 import { v4 as uuid } from 'uuid';
-// const errorStack = new customError(400, 'Product not found');
 import mongoose from 'mongoose';
-
-import { StatusCode } from '../../Utilitiy/status.js';
-import { productSchema } from './products.validator.js';
-import Category from '../../Models/Category.js';
-
+import { StatusCode } from '../../../Utilitiy/status.js';
+import { productSchema } from '../Validator/products.validator.js';
+import Category from '../../../Models/Category.js';
 export const getAllProductServices = async () => {
   const isProductExist = await Product.find({}).populate('category');
   console.log(isProductExist instanceof Product == true);

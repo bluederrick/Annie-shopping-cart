@@ -3,10 +3,9 @@ import config from '../Config.js';
 import winston from 'winston';
 import { logger } from '../Utilitiy/logger.js';
 import customError from '../Utilitiy/customImpl.js';
-let mongDB_URL;
-const _DB = () => {
-  const mongodbCompass = config.MONGODB_COMPASS;
-  mongDB_URL = config.MONGO_URL;
+const mongodbCompass = config.MONGODB_COMPASS;
+const mongDB_URL = config.MONGO_URL;
+const _dB = () => {
   mongoose.connect(mongodbCompass);
   //   mongoose.connect(
   //     'mongodb+srv://admin:12345678@admin.7wv3z5w.mongodb.net/?retryWrites=true&w=majority&appName=admin'
@@ -18,8 +17,9 @@ const _DB = () => {
     // console.log(error);
   }
   db.once('open', () =>
-    logger.log('info', 'Successfully connected to MongoDB')
+    // logger.log('info', 'Successfully connected to MongoDB');
+  console.log('Successfully connected to MongoDB')
   );
   db.on('error', (e) => logger.log('error', e));
 };
-export default _DB;
+export default _dB;

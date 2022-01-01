@@ -9,26 +9,27 @@ import winston from 'winston';
 import router from './App/Products/Router/product.router.js';
 import { GenerateOTP } from './Generic services/generateOTP.js';
 import fs from 'fs';
-// console.log(new customError(400, "Invalid ", "failed"))
+
 const server = createServer(app);
 // create server instance
 server.listen(config.PORT, () => {
   //  logger.error('error', `listening on port ${config.HOST}:${config.PORT} `);
-  // console.log(`listening on port ${config.HOST}:${config.PORT} `);
+  console.log(`listening on port ${config.HOST}:${config.PORT} `);
   logger.log('info', `listening on port ${config.HOST}:${config.PORT} `);
 });
+
 // handle uncaught exceptions sychronus operations
 process.on('uncaughtException', (err) => {
   // process.on is to listen to uncaught exceptions , then it does it excutes the call back function
   // winston.log(_Level[0], 'derrick');
-  logger.log(_Level[0], err.message, err.name);
-  console.log('unhandledException error is:', err.message, err.name);
+  logger.log(_Level[0], err.message, err.name, err.stackTrace);
+  console.log('unhandledException error is:', err.message, err.name, err.stack);
   server.close();
   process.exit(1);
 });
-console.log(u);
+// unhandled  is forb failed  promises
 process.on('unhandledRejection', (err) => {
-  console.log(err);
+  console.log('unhandledRejection error is:', err.message, err.stack);
   logger.log('error', err.message);
   process.exit(1);
 });

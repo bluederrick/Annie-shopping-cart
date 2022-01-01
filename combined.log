@@ -324,3 +324,146 @@ info: listening on port http://localhost:5000
 {"level":"info","message":"Successfully connected to MongoDB"}
 {"level":"info","message":"listening on port http://localhost:5000 "}
 {"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"Successfully connected to MongoDB"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"payment is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Can't save() the same doc multiple times in parallel. Document: 668329fb56700a04da55d935"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Can't save() the same doc multiple times in parallel. Document: 66832a906b3dab6adc3347fd"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Can't save() the same doc multiple times in parallel. Document: 66832ad6e3e5bbc1ba7e0eb4"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: status: Path `status` is required., refenrence: Path `refenrence` is required., receiptId: Path `receiptId` is required., email: Path `email` is required., fullName: Path `fullName` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"uuid is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"uuid is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: status: Path `status` is required., refenrence: Path `refenrence` is required., receiptId: Path `receiptId` is required., email: Path `email` is required., fullName: Path `fullName` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"lastnName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: status: Path `status` is required., receiptId: Path `receiptId` is required., fullName: Path `fullName` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: status: Path `status` is required., receiptId: Path `receiptId` is required., fullName: Path `fullName` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: status: Path `status` is required., currency: Path `currency` is required., amount: Path `amount` is required., receiptId: Path `receiptId` is required., fullName: Path `fullName` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"fullName is not defined"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: receiptId: Path `receiptId` is required."}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Payments validation failed: receiptId: Cast to Number failed for value \"efwl29zp36\" (type string) at path \"receiptId\""}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Request failed with status code 400"}

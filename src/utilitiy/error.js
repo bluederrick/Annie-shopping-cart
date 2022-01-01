@@ -1,6 +1,6 @@
-class error {
+ export default class error {
   constructor(message) {
     this.message = message;
   }
 }
-export default error;
+// export default error;

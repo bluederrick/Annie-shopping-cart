@@ -1,14 +1,22 @@
-import { payStackInitialized } from '../Service/Services';
 import https from 'https';
 import axios from 'axios';
 import * as R from 'ramda';
-import { options } from '../../../Utilitiy/paymentUtils';
+import { options } from '../../../Utilitiy/paymentUtils.js';
+import payment from '../../../Models/payment.js';
+import { v4 as uuid } from 'uuid';
 
 const SECRET_KEY = 'sk_test_73d6705c2145f945820a0884ef6a47597d77f551';
 export const transactions = async (req, res) => {
-  // const { amount, email, currency } = req.body;
-   
-  const clienTransactionaltDetails = JSON.stringify(req.body;);
+  const { email, firstName, lastName, amount, currency, status } = req.body;
+
+  const clienTransactionaltDetails = JSON.stringify({
+    email,
+    fullName: `${firstName + ' ' + lastName}`,
+    amount,
+    currency,
+    status
+  });
+  console.log(clienTransactionaltDetails);
   const initializedResult = await axios.post(
     'https://api.paystack.co/transaction/initialize',
     clienTransactionaltDetails,
@@ -17,41 +25,54 @@ export const transactions = async (req, res) => {
   // const reference_ = res_.data.data.reference
   const objId = R.path(['data', 'data'], initializedResult);
   const reference_Id = R.path(['reference'], objId);
-
-  const intializationReferenceId = new payment({
-    reference_Id
+  const intializationReferenceId = await new payment({
+    id: uuid(),
+    email: email,
+    fullName: `${firstName + ' ' + lastName}`,
+    receiptId: reference_Id,
+    amount: amount,
+    currency: currency,
+    status: status
   });
-  intializationReferenceId.save();
-
-  if(!intializationReferenceId.save();){
-    return ` referenceId  not saved to the database`;
+  console.log(reference_Id);
+  await intializationReferenceId
+    .save()
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      console.log(err);
+      return err.stackTrace;
+    });
+  if (!intializationReferenceId.save()) {
+    return `referenceId  not saved to the database`;
   }
   if (!initializedResult) {
     return res.status(400).json({
       message: `initialization failed with error ${initializedResult}`,
-      response:initializedResult,
+      response: initializedResult,
       referencialId: reference_Id
     });
   }
   return res.status(200).json({ message: initializedResult.data, type: true });
 };
 
-
-
-
-
-// verify payment transaction details; 
+// verify payment transaction details;
 export const verifiyTransactionPaymentRequest = async (req, res) => {
+  // get referenceId from database
+  const paymentDTO = await payment.find();
+  const reference_Id = paymentDTO.receiptId;
+  console.log(reference_Id);
   const verifyOptions = {
-    hostname: 'api.paystack.co',
-    port: 443,
+    // hostname: 'api.paystack.co',
+    // port: 443,
     headers: {
       Authorization: 'Bearer sk_test_73d6705c2145f945820a0884ef6a47597d77f551'
     }
   };
- 
+
   // verify options
-  console.log(reference_Id);
+
   const verifyTransaction = await axios.get(
     'https://api.paystack.co/transaction/verify/{reference_Id}',
     verifyOptions
@@ -63,8 +84,3 @@ export const verifiyTransactionPaymentRequest = async (req, res) => {
     return { data: verifyTransaction, type: true };
   }
 };
-app.use('/api/v1/paystack/verify', verifiyTransactionPaymentRequest);
-console.log(Error);
-app.listen(3000, function () {
-  console.log('server is listeninig on port 3000');
-});

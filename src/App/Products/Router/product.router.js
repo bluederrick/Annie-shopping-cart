@@ -3,13 +3,12 @@ import {
   AddProductsController,
   deleteProductController,
   productController
-} from './product.controllers.js';
+} from '../Controller/product.controllers.js';
 import { verifyToken } from '../../../Utilitiy/token.js';
 import { adminAuthorized, authorizedUser } from '../../../Utilitiy/restrict.js';
 
 const router = express.Router();
 router.post('/createproduct', adminAuthorized, AddProductsController);
-
 router.delete('/product/:id', adminAuthorized, deleteProductController);
 
 // router.get('/categories/:categoryId/products', getProductsCategoryController);
