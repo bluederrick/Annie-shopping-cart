@@ -1,11 +1,17 @@
-const mongoose = require("mongoose");
+const { connect } = require("mongoose");
 
-mongoose.connect().then(() => {
-    console.log('database connection established')
-}).catch(() => {
-    return console.log('failure to connect to database server')
-});
+connect()
+    .then(() => {
+        console
+            .log({ message: `database connection established` })
+    })
+    .catch(() => {
+        return
+        console
+            .log('failure to connect to database server')
+    });
 let db;
 db = mongoose.connection.on('open', () => {
-    console.log('database connection is opened')
+    console
+        .log('database connection is opened')
 })
