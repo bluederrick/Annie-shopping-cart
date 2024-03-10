@@ -1,0 +1,4 @@
+node_module
+.env
+filelog-info.log
+error.txt
