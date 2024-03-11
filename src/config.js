@@ -8,7 +8,8 @@ export default config = {
     MONGO_URL: process.env.DB_CONNECTION,
     ACCESS_SECRET_TOKEN: process.env.ACCESS_SECRET_TOKEN,
     HOST: process.env.HOST,
-    PRODUCTION: process.env.NODE_ENV
+    PRODUCTION: process.env.NODE_ENV,
+    MONGO_URL: process.env.MONGODB_URL
 
 
 }

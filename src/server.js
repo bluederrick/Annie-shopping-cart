@@ -3,7 +3,10 @@ import app from './Application';
 import config from './config';
 import { winston } from './utilitiy/logger';
 import { _Level } from './constants';
-import customError from './utilitiy/customError';
+import { _DB } from './DBconnection./DBconnectivity';
+
+_DB()
+
 var fs = require('fs');
 
 
@@ -30,4 +33,3 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 })
 
-console.log(x)

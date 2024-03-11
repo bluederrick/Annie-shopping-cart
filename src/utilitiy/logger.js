@@ -20,8 +20,6 @@ export const winston = new (Logger)({
             )
         }),
         new (transports.Console)({
-            // name: 'error-file',
-            // filename: 'filelog-error.log',
             level: 'error',
             format: format.combine(format.json(), format.timestamp(),
                 format.colorize(), format.simple()
