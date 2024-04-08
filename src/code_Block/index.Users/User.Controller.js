@@ -26,7 +26,6 @@ export const SignUpController = async (req, res) => {
     verified,
     isAdmin
   });
-  console.log(services, ' derrick is a soft ware developer');
   services
     ? // return res.json({ services: services });
       res.status(200).json({

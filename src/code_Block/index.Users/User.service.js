@@ -20,25 +20,28 @@ const SECRET_KEY = config.SECRET_KEY;
 
 export const signUpService = async (data) => {
   const userDTO = await signUpValidator.validate({ ...data });
-  const phoneNumber = data.phoneNumber;
-  const isUserExist = await _User.find({ phoneNumber });
+  const email = data.email;
 
-  console.log('did you find it', isUserExist);
-  // check for duplicate phone Numbers
-  //   console.log(isUserExist.phoneNumber == userDTO.phoneNumber);
-  //   if (isUserExist == true) {
-  //     return {
-  //       title: 'Duplicate user',
-  //       messsage: `user already signed up `
-  //     };
-  //   }
-
+  const isNewUser = await _User.isEmailExist(email);
+  console.log(isNewUser, ' derrick');
+  if (isNewUser === true) {
+    console.log('user already exist');
+    return {
+      Title: ' user already exist',
+      message: 'signup failed , user already exist in the database',
+      data: {
+        type: false,
+        res: isNewUser
+      }
+    };
+  }
+  console.log('eric is back');
   const password_Len = {
     password: userDTO.password
   };
   let userPassword;
   userPassword = Object.values(password_Len)[0];
-
+  console.log(userPassword);
   // const _userpassword = user(userPassword)(10);
   if (!userPassword) {
     return {
@@ -65,7 +68,6 @@ export const signUpService = async (data) => {
     };
   }
 
-  //   console.log(`token: ${token}`);
   const unverifiedUser = await new _User({
     id: uuid(),
     firstName: userDTO.firstName,
@@ -105,10 +107,9 @@ export const signUpService = async (data) => {
     data: userData
   };
 };
-
-export const verificationService = async (data) => {
-  await verifyOTPservice(data);
-};
+// export const verificationService = async (data) => {
+//   await verifyOTPservice(data);
+// };
 
 export const deleteAccountService = async (id) => {
   // delete user record from database
