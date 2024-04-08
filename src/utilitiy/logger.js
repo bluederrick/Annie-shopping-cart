@@ -1,41 +1,76 @@
-import { configure, Logger, transports, info, format, addColors, } from 'winston';
-import { _Level, log, myCustomLevels } from '../constants';
+import winston from 'winston';
+import { _Level, log, myCustomLevels } from '../utilitiy/constants';
 import config from '../config';
+import { existsSync, mkdirSync } from 'fs';
 // const { combine, timestamp, label, prettyPrint, simple, jso } = format;
 
+const myFormat = winston.format.printf(
+  ({ level, message, label, timestamp }) => {
+    return `${timestamp} [${label}] ${level}: ${message}`;
+  }
+);
+// export const LOG_stack = () => {
 
+//     if (!existsSync('combined')) {
+//         console.log("Creating the file")
 
+//         mkdirSync('combined');
+//     }
 
-export const winston = new (Logger)({
+//     else {
+//         null
 
-    transports: [
-        new (transports.File)({
-            defaultMeta: { service: 'API_SERVICE' },
-            // name: 'info-file',
-            filename: 'filelog-info.log',
-            level: _Level[1],
-            format: format.combine(format.json(), format.timestamp(),
-                format.colorize(), format.simple(), format.label({ label: 'logged!' }),
-                format.prettyPrint()
-            )
-        }),
-        new (transports.Console)({
-            level: 'error',
-            format: format.combine(format.json(), format.timestamp(),
-                format.colorize(), format.simple()
+//     }
 
-            )
-        })
-    ]
-});
+//
+//         winston.createLogger({
+//             level: 'info',
+//             format: winston.format.combine(
+//                 winston.format.timestamp(),
+//                 myFormat
+//             ),
+//             transports: [
+//                 new winston.transports.Console(),
+//                 new winston.transports.File({ filename: 'combined/combined.log' })
+//             ]
+//         });
+//
+//     return true;
 
-if (process.env.NODE_ENV !== 'production') {
-    winston.add(new transports.Console({
-        formats: format.simple(),
-    }));
-}
-
-
+// };
 
 // import { default: logger } from "../Loggers/logger";
 
+export class Logger {
+  loggerStack() {
+    if (!existsSync('combined')) {
+      console.log('Creating the file');
+
+      mkdirSync('combined');
+    } else {
+      null;
+    }
+
+    logger: winston.createLogger({
+      level: 'info',
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        myFormat,
+        winston.format.json()
+      ),
+      transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+          filename: 'combined/combined.log',
+          level: 'error'
+        })
+      ]
+    });
+    // if (process.env.NODE_ENV !== 'production') {
+    //     logger.add(new winston.transports.File({
+    //         format: winston.format.simple(),
+    //         filename: 'combined/combined.log'
+    //     }));
+    // }
+  }
+}

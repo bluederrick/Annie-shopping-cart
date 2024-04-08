@@ -1,7 +1,0 @@
-{"level":"info","message":"listening on port http://localhost:5000 "}
-{"level":"info","message":"listening on port http://localhost:5000 "}
-{
-  level: 'info',
-  message: 'listening on port http://localhost:5000 ',
-  timestamp: '2024-03-14T17:47:56.689Z'
-}
