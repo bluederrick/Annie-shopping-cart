@@ -107,9 +107,9 @@ export const signUpService = async (data) => {
     data: userData
   };
 };
-// export const verificationService = async (data) => {
-//   await verifyOTPservice(data);
-// };
+export const verificationService = async (data) => {
+  await verifyOTPservice(data);
+};
 
 export const deleteAccountService = async (id) => {
   // delete user record from database

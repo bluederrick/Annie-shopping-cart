@@ -1,19 +1,24 @@
-
-
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 export const handleErrors = (err) => {
-    console.log(err.message, err.name);
+  console.log(err.message, err.name);
 
-    // validation errors 
-
-    if (err.message.includes('user validation failed') && err.message.includes('user invalid')) {
-        const error = Object.values(err.errros).forEach((obj) => {
-            return obj;
-
-        })
-    }
-
+  // validation errors
+  if (
+    err.message.includes('user validation failed') &&
+    err.message.includes('user invalid')
+  ) {
+    const error = Object.values(err.errros).forEach((obj) => {
+      return obj;
+    });
+  }
 };
+
+// try {
+//   await Model.validate({ name: null }, ['name']);
+// } catch (err) {
+//   err instanceof mongoose.Error.ValidationError; // true
+//   Object.keys(err.errors); // ['name']
+// }
 
 // export const HandleTokenErros = (err) => {
 //     if (err instanceof jwt.JsonWebTokenError){
@@ -39,7 +44,6 @@ export const handleErrors = (err) => {
 //       });
 //     }
 
-
 // jsonwebtoken
 
-export const JWTError = () => { }; 
+export const JWTError = () => {};

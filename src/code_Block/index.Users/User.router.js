@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.post('/Signup', SignUpController);
+// router.post('/Signup', SignUpController);
 
-// router.post('/verifyotp', verifyOTPcontroller)
+router.patch('/verifyotp/:id', verifyOTPcontroller);
 
 // router.post('login', loginController);
 

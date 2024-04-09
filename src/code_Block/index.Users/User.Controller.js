@@ -1,6 +1,10 @@
 import { isValidObjectId } from 'mongoose';
 import { ObjectId } from 'mongodb';
-import { deleteAccountService, signUpService } from './User.service.js';
+import {
+  deleteAccountService,
+  signUpService,
+  verificationService
+} from './User.service.js';
 
 export const SignUpController = async (req, res) => {
   const {
@@ -39,7 +43,9 @@ export const SignUpController = async (req, res) => {
 };
 
 export const verifyOTPcontroller = async (req, res) => {
-  const { id, otp } = req.body;
+  const { id } = req.params;
+  const { otp } = req.body;
+  console.log(req.body);
   const verified = verificationService({ id, otp });
   if (!verified) {
     return res.status(400).json({
