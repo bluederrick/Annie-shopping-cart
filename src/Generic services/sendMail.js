@@ -27,23 +27,3 @@ transporter.verify((err, result) => {
 })
 
 
-// send mail with defined transport object
-
-
-// }
-
-// main().catch(console.error);
-
-// const sendMail = async (transporter, mailOptions) => {
-//     try {
-//         await transporter.sendMail(mailOptions)
-
-//         console.log(`mail has been sent to successfully`)
-//     } catch (e) {
-//         console.log(e);
-//     }
-// };
-
-// sendMail(transporter, mailOptions).then((res) => {
-//     console.log(`mail sent successfully \n ${res},`);
-// });

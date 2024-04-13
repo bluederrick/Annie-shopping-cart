@@ -5,14 +5,15 @@ import {
   loginController,
   verifyOTPcontroller
 } from './User.Controller';
+import restrictUsersAuthentication_ from '../../utilitiy/restrict';
 
 const router = express.Router();
 
 // router.post('/Signup', SignUpController);
 
-router.patch('/verifyotp/:id', verifyOTPcontroller);
+// router.patch('/verifyotp/:id', verifyOTPcontroller);
 
-// router.post('login', loginController);
+router.post('/login', loginController);
 
 // router.delete('/delete/:id', deleteController);
 

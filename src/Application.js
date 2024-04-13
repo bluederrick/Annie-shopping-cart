@@ -38,8 +38,8 @@ app.use(
 
 // app.use(deleteRouter);
 // app.use(OTProuter);
-// app.use(productRouter);
-app.use(usersRouter);
+app.use(productRouter);
+// app.use(usersRouter);
 // app.use('/api/v1', AdminClientRoutes);
 
 export default app;

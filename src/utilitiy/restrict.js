@@ -1,24 +1,29 @@
 import { verifyToken } from './token';
+import express from 'express';
 
 // assign user  to object
 
-const restrictUsersAuthentication_ = (role) => (req, res, next) => {
+const restrictUsersAuthentication_ = (obj, _R, next) => {
   // first step is to extract the token first
-  // beare .token
-  const authHeaderToken = req.headers[authorizationHeader];
-  const Token = authHeaderToken && authHeaderToken.split(':')[1];
+
+  const authHeaderToken = obj.headers['authorization'];
+  //  authorization = bearer <token>
+  console.log(authHeaderToken);
+  const Token = authHeaderToken && authHeaderToken.split(' ')[1];
+  // req.Token = Token;
+  console.log(Token);
   Token
-    ? res
-        .status(401)
-        .json({
-          token: Token,
-          message: 'invalid token recieved  kindly provide a ',
-          type: false
-        })
-    : //   verify the token
-      verifyToken(Token);
+    ? verifyToken(Token)
+    : _R.status(403).json({
+        token: Token,
+        message: 'invalid token recieved  kindly provide a token ',
+        type: false
+      });
+  //   verify the token
 
   next();
 };
 
-export default restrictUsersAuthentication_;
+export const authorizedUser = (req, res, next) => {
+  const token = restrictUsersAuthentication_(req, res, next);
+};

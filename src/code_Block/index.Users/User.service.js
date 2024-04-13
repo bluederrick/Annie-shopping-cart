@@ -35,7 +35,7 @@ export const signUpService = async (data) => {
       }
     };
   }
-  console.log('eric is back');
+
   const password_Len = {
     password: userDTO.password
   };
@@ -66,8 +66,9 @@ export const signUpService = async (data) => {
       title: `token not found`,
       message: `Invalid token ${token}`
     };
+    console.log(token, 'token');
   }
-
+  console.log('token :', token);
   const unverifiedUser = await new _User({
     id: uuid(),
     firstName: userDTO.firstName,
@@ -86,7 +87,8 @@ export const signUpService = async (data) => {
       console.log(result);
       return {
         message: 'user saved successfully',
-        data: result
+        data: result,
+        token: `token ${token}`
       };
     })
     .catch((error) => {
@@ -144,6 +146,7 @@ export const deleteAccountService = async (id) => {
 
 export const loginService = async (obj) => {
   const DTO = await loginValidator.validate(obj);
+
   if (!DTO) {
     return {
       type: false,
@@ -151,20 +154,49 @@ export const loginService = async (obj) => {
       respone: DTO
     };
   }
+  const DB = await _User.find({ email: DTO.email });
 
-  const isFinderExist = await findLogin(_User)(DTO.user)(DTO.password);
+  const DBpassword = DB[0].password;
+  const email = DTO.email;
 
-  if (isFinderExist) {
+  const isEmailExist = await _User.findOne({ email });
+  if (!isEmailExist) {
+    console.log('Kindly enter the correct data');
+    return `Kindly enter the correct data , ${isEmailExist}`;
+  }
+
+  // const isFinderExist = await findLogin(_User)(DTO.user)(DTO.password);
+
+  const userPassword = DTO.password;
+
+  const isPasswordValid = await bcrypt.compare(
+    userPassword,
+    DBpassword,
+    (error, result) => {
+      if (error) {
+        return {
+          Title: 'incorrect password entry',
+          type: false,
+          message: `incorrect password input for ${userPassword}`
+        };
+      }
+      console.log(result, 'password is correct');
+    }
+  );
+
+  const token = accessToken(DTO, SECRET_KEY);
+  if (!token) {
     return {
-      type: false,
-      message: 'Please provide a correct login credentials  for the login',
-      Credential: isFinderExist
+      auth: false,
+      title: `token not found`,
+      message: `Invalid token ${token}`,
+      result: result
     };
   }
-  const isPasswordValid = await bcrypt.compare(_User.password, DTO.password);
-  if (!isPasswordValid) {
-    return ` passwords is invalid please try again {isPasswordValid}`;
-  }
+  // console.log(token);
+  return {
+    token: token
+  };
 };
 
 export const updateUser = () => {};

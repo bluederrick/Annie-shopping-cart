@@ -21,6 +21,6 @@ export const signUpValidator = object({
 //
 
 export const loginValidator = object({
-  username: string().required('username is required for login'),
+  email: string().required('email is required for login'),
   password: string().required('password is required for login')
 });

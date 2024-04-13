@@ -5,17 +5,20 @@ import {
   productController
 } from './product.controllers';
 import { verifyToken } from '../../utilitiy/token';
-import restrictUsersAuthentication_ from '../../utilitiy/restrict';
+import restrictUsersAuthentication_, {
+  authorizedUser
+} from '../../utilitiy/restrict';
 
 const router = express.Router();
 
-router.get('/Allproducts', productController);
+// router.get('/Allproducts', productController);
 
-// router.post('/createproduct', AddProductsController)
+router.post('/createproduct', AddProductsController);
 
 router.delete(
   '/product/:id',
-  restrictUsersAuthentication_,
+  // restrictUsersAuthentication_(),
+  authorizedUser,
   deleteProductController
 );
 

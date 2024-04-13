@@ -2,6 +2,7 @@ import { isValidObjectId } from 'mongoose';
 import { ObjectId } from 'mongodb';
 import {
   deleteAccountService,
+  loginService,
   signUpService,
   verificationService
 } from './User.service.js';
@@ -18,6 +19,10 @@ export const SignUpController = async (req, res) => {
     verified,
     isAdmin
   } = req.body;
+
+  // ASSIGN USER ROLE TO REQ.BODY
+
+  
   // console.log(req.body)
   const services = await signUpService({
     _id,
@@ -31,7 +36,9 @@ export const SignUpController = async (req, res) => {
     isAdmin
   });
   services
-    ? // return res.json({ services: services });
+    ? // Assign req touser
+    req.userData=users;
+
       res.status(200).json({
         response: services
       })
@@ -81,16 +88,16 @@ export const deleteController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
-  const { userName, password } = req.body;
+  const { email, password } = req.body;
 
-  const loginUser = await loginService(userName, password);
+  const loginUser = await loginService({ email, password });
   if (!loginUser) {
     throw new Error();
   }
 
-  return req.status(200).json({
+  return res.status(200).json({
     response: loginUser,
     type: true,
-    message: `Login successful for ` + loginUser.name + ' ' + loginUser
+    message: `Login successful  `
   });
 };

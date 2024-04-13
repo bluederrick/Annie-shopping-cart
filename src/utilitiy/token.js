@@ -46,11 +46,11 @@ export const refreshToken = (data, token) => {
   });
 };
 
-export const verifyToken = function verify(token) {
-  return jwt.verify(token, SECRET_KEY, (err, _id) => {
-    if (err) throw err;
-    req.user = _id;
-
-    next();
+export const verifyToken = (tokenData) => {
+  return jwt.verify(tokenData, SECRET_KEY, (err, _authData) => {
+    if (err) {
+      throw err;
+    }
+    // req.token = _authData;
   });
 };
