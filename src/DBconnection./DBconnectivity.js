@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import config from '../config';
+import config from '../config.js';
 // import { winston } from '../utilitiy/logger';
 import winston from 'winston';
 
@@ -11,9 +11,9 @@ const _DB = () => {
   //     false);
   // mongoose.connect(mongDB_URL)
   mongoose.connect('mongodb://localhost:27017/Annie_shop');
-//   mongoose.connect(
-//     'mongodb+srv://admin:12345678@admin.7wv3z5w.mongodb.net/?retryWrites=true&w=majority&appName=admin'
-//   );
+  //   mongoose.connect(
+  //     'mongodb+srv://admin:12345678@admin.7wv3z5w.mongodb.net/?retryWrites=true&w=majority&appName=admin'
+  //   );
 
   const db = mongoose.connection;
 

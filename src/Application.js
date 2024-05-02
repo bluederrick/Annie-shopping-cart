@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import productRouter from './code_Block/index.products/product.router';
-import usersRouter from './code_Block/index.users/user.router';
-import deleteRouter from './code_Block/index.Users/User.router';
+import productRouter from './code_Block/index.products/product.router.js';
+import usersRouter from './code_Block/index.users/user.router.js';
+import deleteRouter from './code_Block/index.Users/User.router.js';
+import categoryRouter from './code_Block/index.category/category.route.js';
+import orderRouter from './code_Block/index.orders/order.router.js';
 
 const app = express();
 // cors conifiguration
@@ -35,10 +37,11 @@ app.use(
 // });
 
 // app.use(router)
-
+app.use(categoryRouter);
 // app.use(deleteRouter);
 // app.use(OTProuter);
 app.use(productRouter);
+app.use(orderRouter);
 // app.use(usersRouter);
 // app.use('/api/v1', AdminClientRoutes);
 

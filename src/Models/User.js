@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { ROLES, STATE } from '../utilitiy/constants';
+import { ROLES, STATE } from '../utilitiy/constants.js';
 import { v4 as uuid } from 'uuid';
 const { ACTIVE, NON_ACTIVE, PENDING } = STATE;
 

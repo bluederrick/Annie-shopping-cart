@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const { randomUUID } = require('crypto');
+import { randomUUID } from 'crypto';
 const {} = mongoose;
 const { Schema } = mongoose;
 
@@ -22,7 +22,7 @@ const ProductSchema = new Schema({
     min: [1, 'Rating must be above 1.0'],
     max: [5, 'Rating must be below 5.0']
   },
-  isFeatured:{type: Boolean, default:true}
+  isFeatured: { type: Boolean, default: true },
   // countInStock: {
   //     type: Number, required: 'count in stock is require', min: 0, max: 20
   // },
@@ -30,6 +30,12 @@ const ProductSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'productCategory',
     required: true
+  },
+  countInStock: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 300
   },
   dateCreated: { type: Date, default: Date.now() }
 });

@@ -1,8 +1,7 @@
-import { verifyToken } from './token';
+import { verifyToken } from './token.js';
 import express from 'express';
 
 // assign user  to object
-
 const restrictUsersAuthentication_ = (obj, _R, next) => {
   // first step is to extract the token first
 

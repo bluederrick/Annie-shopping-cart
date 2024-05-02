@@ -1,5 +1,5 @@
-import { object, date, mixed, oneOf, number, string } from 'yup';
-import { gender } from '../../utilitiy/constants';
+import { object, date, mixed, number, string } from 'yup';
+import { gender } from '../../utilitiy/constants.js';
 
 export const UserValidator = object({
   name: string().required('name is required for this user'),

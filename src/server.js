@@ -1,14 +1,14 @@
 import { createServer } from 'http';
-import app from './Application';
-import config from './config';
-import { Logger } from './utilitiy/logger';
-import { _Level } from './utilitiy/constants';
-import customError from './utilitiy/customError';
+import app from './Application.js';
+import config from './config.js';
+import { Logger } from './utilitiy/logger.js';
+import { _Level } from './utilitiy/constants.js';
+import customError from './utilitiy/customError.js';
 import winston from 'winston';
-import _DB from './DBconnection./DBconnectivity';
-import router from './code_Block/index.products/product.router';
-import { GenerateOTP } from './Generic services/generateOTP';
-const fs = require('fs');
+import _DB from './DBconnection./DBconnectivity.js';
+import router from './code_Block/index.products/product.router.js';
+import { GenerateOTP } from './Generic services/generateOTP.js';
+import fs from 'fs';
 _DB();
 
 // LOG_stack()

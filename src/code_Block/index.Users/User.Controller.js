@@ -1,5 +1,5 @@
 import { isValidObjectId } from 'mongoose';
-import { ObjectId } from 'mongodb';
+
 import {
   deleteAccountService,
   loginService,
@@ -22,7 +22,6 @@ export const SignUpController = async (req, res) => {
 
   // ASSIGN USER ROLE TO REQ.BODY
 
-  
   // console.log(req.body)
   const services = await signUpService({
     _id,
@@ -37,7 +36,7 @@ export const SignUpController = async (req, res) => {
   });
   services
     ? // Assign req touser
-    req.userData=users;
+      // req.userData=users
 
       res.status(200).json({
         response: services

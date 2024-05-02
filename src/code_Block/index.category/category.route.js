@@ -1,18 +1,21 @@
 import express from 'express';
 import {
   addCategoryControllers,
+  categoryListControllers,
   deleteCategoryControllers,
   updateCategoryControllers
-} from './category.controllers';
+} from './category.controllers.js';
 
 const router = express.Router();
 
-router.post('/category', addCategoryControllers);
+router.post('/create-category', addCategoryControllers);
 
-router.delete('/:categoryid', deleteCategoryControllers);
+router.delete('/:id', deleteCategoryControllers);
 
-router.put('/category/:categoryid', updateCategoryControllers);
+router.put('/category/:_id', updateCategoryControllers);
 
 // CATEGORY LIST
 
 router.get('/categorylist', categoryListControllers);
+
+export default router;

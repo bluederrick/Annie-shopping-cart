@@ -1,9 +1,9 @@
-import transporter from './sendMail.js'
+// import transporter from './sendMail.js'
 
-export const EmailService = {
-    sendEmailVerification: (email, otp) => {
-    }
-}
+// export const EmailService = {
+//     sendEmailVerification: (email, otp) => {
+//     }
+// }
 
 
 export const sendEmail = async (mailOptions) => {

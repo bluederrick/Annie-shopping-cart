@@ -1,8 +1,8 @@
-import { object, string, number, date } from 'yup';
+import { object, string, number, date, boolean } from 'yup';
 
-export const categorySchema = object({
+export const categoryValidator = object({
   title: string().required(),
   icon: string().required(),
-  isFeatured: boolean().required()
-  createdOn: date().default(() => new Date())
+  isFeatured: boolean().required(),
+  isVoided: boolean().required()
 });

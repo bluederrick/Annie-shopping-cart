@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import config from '../config';
-import { handleErrors } from './errorHandlers';
+import config from '../config.js';
+import { handleErrors } from './errorHandlers.js';
 const REFRESH_KEY = config.REFRESH_KEY;
 const SECRET_KEY = config.SECRET_KEY;
 const key = { key: process.env.SECRET_KEY };

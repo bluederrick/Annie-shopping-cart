@@ -1,9 +1,8 @@
-import restrictUsersAuthentication_ from '../../utilitiy/restrict';
 import {
   createProductsService,
   deleteProductService,
   getAllProductServices
-} from './products.service';
+} from './products.service.js';
 
 export const productController = async (req, res) => {
   const services = await getAllProductServices();
@@ -22,7 +21,9 @@ export const AddProductsController = async (req, res) => {
     imageUrl,
     review,
     rating,
-    category
+    category,
+    isFeatured,
+    countInStock
   } = req.body;
   const addedProducts = await createProductsService({
     productTitle,
@@ -31,18 +32,21 @@ export const AddProductsController = async (req, res) => {
     imageUrl,
     review,
     rating,
-    category
+    category,
+    isFeatured,
+    countInStock
   });
-  console.log(addedProducts);
-  addedProducts
-    ? res.status(200).json({
-        title: 'Products added ',
-        message: ' products was added successfully'
-      })
-    : res.status(400).json({
-        title: 'No products ',
-        message: 'No products were added successfully'
-      });
+  // console.log(addedProducts);
+  if (addedProducts === undefined || addedProducts === null || !addedProducts) {
+    return res.status(400).json({
+      title: 'No Products added ',
+      message: ' products was not added successfully'
+    });
+  }
+  return res.status(200).json({
+    title: 'products Added successfully',
+    message: ' products were added successfully'
+  });
   return addedProducts;
 };
 
@@ -76,3 +80,5 @@ export const updatedProduct = async (req, res) => {
     messgae: 'Product updated successfully'
   });
 };
+
+export const productCountControllers = (req, res) => {};

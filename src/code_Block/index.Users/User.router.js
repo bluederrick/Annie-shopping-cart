@@ -4,8 +4,8 @@ import {
   deleteController,
   loginController,
   verifyOTPcontroller
-} from './User.Controller';
-import restrictUsersAuthentication_ from '../../utilitiy/restrict';
+} from './User.Controller.js';
+// import restrictUsersAuthentication_ from '../../utilitiy/restrict.js';
 
 const router = express.Router();
 

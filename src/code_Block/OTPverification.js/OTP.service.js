@@ -1,11 +1,11 @@
-import _Otp from '../../Models/useOTPVerificaition';
-import { GenerateOTP } from '../../Generic services/generateOTP';
+import _Otp from '../../Models/useOTPVerificaition.js';
+import { GenerateOTP } from '../../Generic services/generateOTP.js';
 import bcrypt from 'bcrypt';
-import { transporter } from '../../Generic services/sendMail';
-import { sendEmail } from '../../Generic services/EmailService';
-import _User from '../../Models/User';
+import { transporter } from '../../Generic services/sendMail.js';
+import { sendEmail } from '../../Generic services/EmailService.js';
+import _User from '../../Models/User.js';
 import { config } from 'dotenv';
-import exco from '../../utilitiy/helper';
+import exco from '../../utilitiy/helper.js';
 const { EMAIL_ADDRESS, EMAIL_PASSWORD, EMAIL_HEADER } = config;
 const salt = 10;
 let Email;

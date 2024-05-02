@@ -3,11 +3,9 @@ import {
   AddProductsController,
   deleteProductController,
   productController
-} from './product.controllers';
-import { verifyToken } from '../../utilitiy/token';
-import restrictUsersAuthentication_, {
-  authorizedUser
-} from '../../utilitiy/restrict';
+} from './product.controllers.js';
+import { verifyToken } from '../../utilitiy/token.js';
+import { authorizedUser } from '../../utilitiy/restrict.js';
 
 const router = express.Router();
 

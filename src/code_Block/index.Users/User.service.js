@@ -1,18 +1,18 @@
-import _User from '../../Models/User';
-import { GenerateOTP } from '../../Generic services/generateOTP';
-import { duplicateDTO, findLogin, save } from '../../utilitiy/DB_Executer';
-import { accessToken } from '../../utilitiy/token';
+import _User from '../../Models/User.js';
+import { GenerateOTP } from '../../Generic services/generateOTP.js';
+import { duplicateDTO, findLogin } from '../../utilitiy/DB_Executer.js';
+import { accessToken } from '../../utilitiy/token.js';
 import jwt from 'jsonwebtoken';
-import { loginValidator, signUpValidator } from './User.validator';
+import { loginValidator, signUpValidator } from './User.validator.js';
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
-import config from '../../config';
-import { user } from '../../utilitiy/Fn.excute';
-import _Otp from '../../Models/useOTPVerificaition';
+import config from '../../config.js';
+import { user } from '../../utilitiy/Fn.excute.js';
+import _Otp from '../../Models/useOTPVerificaition.js';
 import {
   sendOTPVerfication,
   verifyOTPservice
-} from '../OTPverification.js/OTP.service';
+} from '../OTPverification.js/OTP.service.js';
 const TOKENKEY = 'tokenkey';
 const SECRET_KEY = config.SECRET_KEY;
 

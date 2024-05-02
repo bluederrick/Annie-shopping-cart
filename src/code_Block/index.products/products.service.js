@@ -1,10 +1,12 @@
-import Product from '../../Models/Products';
-import customError from '../../utilitiy/customError';
+import Product from '../../Models/Products.js';
+import customError from '../../utilitiy/customError.js';
 import { v4 as uuid } from 'uuid';
 const errorStack = new customError(400, 'Product not found');
+import mongoose from 'mongoose';
 
 import { StatusCode } from '../../utilitiy/status.js';
 import { productSchema } from './products.validator.js';
+import Category from '../../Models/Category.js';
 
 export const getAllProductServices = async () => {
   const isProductExist = await Product.find({}).populate('category');
@@ -21,22 +23,26 @@ export const getAllProductServices = async () => {
   return errorStack;
 };
 
-
-export const productService =()=>{
-  const isProduct = product.findById({}).populate('category')
+export const productService = () => {
+  const isProduct = product.findById({}).populate('category');
 };
 
-
+// create a product
 export const createProductsService = async (data) => {
-//  validate every category for product stream line 
+  //  validate every category for product stream line
   const productDTO = await productSchema.validate(data);
-const categoryDTO = productDTO.category
-   const isCategory = await Category.find({categoryDTO });
-  if(isCategory){
+  const categoryDTO = productDTO.category;
+  // const _isCategory = parseInt(CategoryDTO);
+  const isCategory = await Category.findById(categoryDTO);
+
+  // const _isCategory = parseInt(isCategory);
+  // console.log(isCategory);
+  if (!isCategory) {
+    console.log('category not found');
     return {
       Type: false,
-      message: 'category cannot be found '
-    }
+      message: 'category cannot be found'
+    };
   }
 
   if (!productDTO || productDTO == null) {
@@ -54,15 +60,16 @@ const categoryDTO = productDTO.category
     imageUrl: productDTO.imageUrl,
     review: productDTO.review,
     rating: productDTO.rating,
-    category:productDTO.category
-    // countInStock: productDTO.countInStock, 
+    category: productDTO.category,
+    isFeatured: productDTO.isFeaured,
+    countInStock: productDTO.countInStock,
     createdOn: Date.now()
   });
 
   newProducts
     .save()
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       return {
         result: result,
         message: 'new products saved successfully'
@@ -78,13 +85,25 @@ const categoryDTO = productDTO.category
   return newProducts;
 };
 
-export const updateProductService = () => {
-  const updateProduct = product.findByIdAndUpdate()
-
-  if !updateProduct){
-     return throw new Error('Product not found');
+export const updateProductService = async (data) => {
+  const productDTO = await productSchema.validate(data);
+  const categoryDTO = productDTO.category;
+  const isCategory = await Category.find({ categoryDTO });
+  if (isCategory) {
+    return {
+      Type: false,
+      message: 'category cannot be found '
+    };
   }
-  return  updateProduct;
+  if (!mongoose.isValidObjectId(id)) {
+    return 'Invalid productId';
+  }
+  const updateProduct = product.findByIdAndUpdate();
+
+  if (!updateProduct) {
+    return 'Product not found';
+  }
+  return updateProduct;
 };
 
 export const deleteProductService = async (id) => {
@@ -102,6 +121,16 @@ export const deleteProductService = async (id) => {
   };
 };
 
+export const countProductService = async () => {
+  const productCount = await product.countDocuments((count) => count);
+  if (!productCount) {
+    return 'No count for product';
+  }
+  return {
+    count: productCount,
+    type: true
+  };
+};
 /* TODO: Products
  * get product details
  * get product by category   /categories/:categoryId/products
