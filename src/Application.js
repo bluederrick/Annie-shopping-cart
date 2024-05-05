@@ -42,7 +42,7 @@ app.use(categoryRouter);
 // app.use(OTProuter);
 app.use(productRouter);
 app.use(orderRouter);
-// app.use(usersRouter);
+app.use(usersRouter);
 // app.use('/api/v1', AdminClientRoutes);
 
 export default app;

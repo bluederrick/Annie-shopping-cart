@@ -5,19 +5,14 @@ import {
   productController
 } from './product.controllers.js';
 import { verifyToken } from '../../utilitiy/token.js';
-import { authorizedUser } from '../../utilitiy/restrict.js';
+import { adminAuthorized, authorizedUser } from '../../utilitiy/restrict.js';
 
 const router = express.Router();
 
 // router.get('/Allproducts', productController);
 
-router.post('/createproduct', AddProductsController);
+router.post('/createproduct', adminAuthorized, AddProductsController);
 
-router.delete(
-  '/product/:id',
-  // restrictUsersAuthentication_(),
-  authorizedUser,
-  deleteProductController
-);
+router.delete('/product/:id', adminAuthorized, deleteProductController);
 
 export default router;

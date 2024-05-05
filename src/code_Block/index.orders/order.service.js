@@ -61,28 +61,25 @@ export const createOrderService = async (data) => {
 
     // totalPrice: sumTotalPrice
   });
-  console.log(verifiedOrder);
-  return verifiedOrder;
 
-  // const userOrder = await verifiedOrder
-  //   .save()
-  //   .then((result) => {
-  //     console.log(result);
-  //     return {
-  //       message: 'user saved successfully',
-  //       data: result
-  //     };
-  //   })
-  //   .catch((error) => {
-  //     message: error.message;
-  //   });
+  const userOrder = await verifiedOrder.save();
+  // .then((result) => {
+  //   console.log('derrick');
+  //   return {
+  //     message: 'user saved successfully',
+  //     data: result
+  //   };
+  // })
+  // .catch((error) => {
+  //   message: error.message;
+  // });
 
-  // //   console.log(userData);
+  //   console.log(userData);
   // const userVerifiedData = Object.values(userData);
   // console.log(userVerifiedData);
   // console.log(userData.data);
 
-  // return userData
+  return userOrder;
 };
 
 // delete user order
@@ -108,4 +105,22 @@ export const deleteOrderService = async (id) => {
         return error;
       });
   });
+};
+
+export const getAllOrderService = async () => {
+  // get all orders from the database
+
+  const getOrdersAll = await Order.find({});
+  console.log(getOrdersAll);
+  if (!getOrdersAll) {
+    return {
+      message: 'Error while fetching orders from the database',
+      Type: false
+    };
+  }
+  return {
+    response: getOrdersAll,
+    Type: true,
+    message: 'Orders fetched successfully'
+  };
 };

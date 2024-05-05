@@ -5,18 +5,18 @@ import {
   loginController,
   verifyOTPcontroller
 } from './User.Controller.js';
+import { adminAuthorized } from '../../utilitiy/restrict.js';
+
 // import restrictUsersAuthentication_ from '../../utilitiy/restrict.js';
 
 const router = express.Router();
 
-// router.post('/Signup', SignUpController);
+router.post('/Signup', SignUpController);
 
-// router.patch('/verifyotp/:id', verifyOTPcontroller);
+router.patch('/verifyotp/:id', verifyOTPcontroller);
 
 router.post('/login', loginController);
 
-// router.delete('/delete/:id', deleteController);
-
-// router.post('/sendOTP', send
+router.delete('/delete/:id', adminAuthorized, deleteController);
 
 export default router;

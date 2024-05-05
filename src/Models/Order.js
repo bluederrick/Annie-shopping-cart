@@ -18,10 +18,10 @@ const orderSchema = new Schema({
   phoneNumber: { type: Number, required: true },
   zip: { type: String, required: true },
   status: { type: String, required: true, default: PENDING },
-  totalPrice: {
-    type: Number,
-    required: true
-  },
+  // totalPrice: {
+  //   type: Number,
+  //   required: true
+  // },
   user: { type: mongoose.Schema.Types.ObjectId, ref: '_Users' },
   dateOrdered: { type: Date, default: Date.now }
 });

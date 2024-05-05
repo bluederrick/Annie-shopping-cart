@@ -1,13 +1,17 @@
 import express from 'express';
 import {
   addOrderControllers,
-  deleteOrderControllers
+  deleteOrderControllers,
+  getAllOrderControllers
 } from './order.controller.js';
+import { adminAuthorized, authorizedUser } from '../../utilitiy/restrict.js';
 
 const router = express.Router();
 
-router.post('/orders/', addOrderControllers);
+router.post('/orders/', authorizedUser, addOrderControllers);
 
-router.delete('/DeleteOrder', deleteOrderControllers);
+router.delete('/DeleteOrder', adminAuthorized, deleteOrderControllers);
+
+router.get('/Getorders', getAllOrderControllers);
 
 export default router;

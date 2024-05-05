@@ -1,7 +1,7 @@
 import _User from '../../Models/User.js';
 import { GenerateOTP } from '../../Generic services/generateOTP.js';
 import { duplicateDTO, findLogin } from '../../utilitiy/DB_Executer.js';
-import { accessToken } from '../../utilitiy/token.js';
+import { accessToken, refreshToken } from '../../utilitiy/token.js';
 import jwt from 'jsonwebtoken';
 import { loginValidator, signUpValidator } from './User.validator.js';
 import bcrypt from 'bcrypt';
@@ -15,6 +15,7 @@ import {
 } from '../OTPverification.js/OTP.service.js';
 const TOKENKEY = 'tokenkey';
 const SECRET_KEY = config.SECRET_KEY;
+const REFRESH_KEY = config.REFRESH_KEY;
 
 // const salt = bcrypt.genSaltSync(10);
 
@@ -168,6 +169,7 @@ export const loginService = async (obj) => {
   // const isFinderExist = await findLogin(_User)(DTO.user)(DTO.password);
 
   const userPassword = DTO.password;
+  const userEmail = DTO.email;
 
   const isPasswordValid = await bcrypt.compare(
     userPassword,
@@ -184,18 +186,23 @@ export const loginService = async (obj) => {
     }
   );
 
-  const token = accessToken(DTO, SECRET_KEY);
-  if (!token) {
+  const token = accessToken(userEmail, SECRET_KEY);
+  const refresherToken = refreshToken(userEmail, REFRESH_KEY);
+  console.log(refresherToken);
+  if (!token && !refresherToken) {
     return {
       auth: false,
       title: `token not found`,
       message: `Invalid token ${token}`,
-      result: result
+      result: {
+        token: token
+      }
     };
   }
   // console.log(token);
   return {
-    token: token
+    token: token,
+    refreshToken: refresherToken
   };
 };
 
