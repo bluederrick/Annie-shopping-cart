@@ -1,7 +1,8 @@
-import { verifyToken } from './token.js';
+import { getUserToken, verifyToken } from './token.js';
 import express from 'express';
 import config from '../config.js';
 const SECRET_KEY = config.SECRET_KEY;
+import jwt from 'jsonwebtoken';
 
 // assign user  to object
 const restrictUsersAuthentication_ = (obj, _R, next) => {
@@ -40,26 +41,39 @@ export const authorizedUser = (req, res, next) => {
 const AdminAuthorization_validation = (obj, _R, next) => {};
 // Role authorization for Admin------
 export const adminAuthorized = (req, res, next) => {
-  const Token = getUserToken(req);
-  if (!Token) return res.status(403).send(`unAthorized access ${Token}`);
+  const isToken = getUserToken(req);
+
+  console.log(isToken);
+  if (!isToken) return res.status(403).send(`unAthorized access ${isToken}`);
   //  Verify Token provided by User
 
-  return new Promise((resolve, reject) => {
-    const isVerified = verifyToken(Token, SECRET_KEY, (err, decode));
-    if (!isVerified) {
+  const isVerified = jwt.verify(isToken, SECRET_KEY, (err, decoded) => {
+    new Promise((resolve, reject) => {
+      if (err)
+        resolve({
+          res: err.message,
+          Type: false,
+          message: `Invalid token`
+        });
+
       resolve({
-        Title: '  Token',
-        message: 'Verified token'
+        Data: decoded,
+        Type: true,
+        message: `Valid token for Admin`
       });
 
-      Object.assign(req, {
-        context: {
-          decode: decode.role
-        }
-      });
-    }
-    console.log(req.context.decode);
-    console.log('derrick is hebrew boy');
+      console.log(decoded);
+      req.data = decoded.role;
+      console.log(req.data);
+    });
+
+    // Object.assign(req, {
+    //   context: {
+    //     decode: decode.role
+    //   }
+    // });
+
     //  req.Role =
   });
+  console.log(isVerified);
 };

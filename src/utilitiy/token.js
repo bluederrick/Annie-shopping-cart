@@ -6,13 +6,13 @@ const REFRESH_KEY = config.REFRESH_KEY;
 const key = { key: process.env.SECRET_KEY };
 const max_age = 3 * 24 * 60 * 60;
 
-export const accessToken = (data, token) => {
+export const accessToken = (data, token_) => {
   return jwt.sign(
     data,
-    token,
+    token_,
     { algorithm: 'HS256' },
     { expiresIn: max_age },
-    (err, token) => {
+    (err, token_) => {
       err && err.message
         ? console.log({
             status: 422,
@@ -21,7 +21,8 @@ export const accessToken = (data, token) => {
             message: 'Unable to generate token'
           })
         : console.log({
-            message: 'token created for user authentification'
+            message: 'token created for user authentification',
+            Type: true
           });
     }
   );
@@ -67,6 +68,10 @@ export const verifyToken = (tokenData, Secret, req) => {
 
 export const getUserToken = (obj) => {
   const authHeaderToken = obj.headers['authorization'];
-  if (authHeaderToken == null)
-    return 'Kindly provide a Token for authentification purposes';
+  const AdminToken = authHeaderToken && authHeaderToken.split(' ')[1];
+  return AdminToken;
+  // console.log(authHeaderToken);
+  // if (authHeaderToken == null)
+  // return 'Kindly provide a Token for authentification purposes';
+  return authHeaderToken;
 };

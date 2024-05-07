@@ -87,16 +87,19 @@ export const deleteController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, roles } = req.body;
 
-  const loginUser = await loginService({ email, password });
+  const loginUser = await loginService({ email, password, roles });
   if (!loginUser) {
-    throw new Error();
+    return res.status(401).json({
+      Title: 'Error occured while Loging in ',
+      Type: false
+    });
   }
 
   return res.status(200).json({
     response: loginUser,
     type: true,
-    message: `Login successful `
+    message: `Login successful`
   });
 };

@@ -60,16 +60,16 @@ export const signUpService = async (data) => {
   };
 
   // TODO :  generate access token and save to he database
-  const token = accessToken(payloadDTO, SECRET_KEY);
-  if (!token) {
-    return {
-      auth: false,
-      title: `token not found`,
-      message: `Invalid token ${token}`
-    };
-    console.log(token, 'token');
-  }
-  console.log('token :', token);
+  // const token = accessToken(payloadDTO, SECRET_KEY);
+  // if (!token) {
+  //   return {
+  //     auth: false,
+  //     title: `token not found`,
+  //     message: `Invalid token ${token}`
+  //   };
+  //   console.log(token, 'token');
+  // }
+  // console.log('token :', token);
   const unverifiedUser = await new _User({
     id: uuid(),
     firstName: userDTO.firstName,
@@ -186,8 +186,8 @@ export const loginService = async (obj) => {
     }
   );
 
-  const token = accessToken(userEmail, SECRET_KEY);
-  const refresherToken = refreshToken(userEmail, REFRESH_KEY);
+  const token = accessToken(DTO, SECRET_KEY);
+  const refresherToken = refreshToken(DTO, REFRESH_KEY);
   console.log(refresherToken);
   if (!token && !refresherToken) {
     return {
@@ -206,4 +206,4 @@ export const loginService = async (obj) => {
   };
 };
 
-export const updateUser = () => {};
+export const updateUserInfo = () => {};

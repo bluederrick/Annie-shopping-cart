@@ -1,5 +1,5 @@
 import { object, date, mixed, number, string } from 'yup';
-import { gender } from '../../utilitiy/constants.js';
+import { gender, ROLES } from '../../utilitiy/constants.js';
 
 export const UserValidator = object({
   name: string().required('name is required for this user'),
@@ -15,12 +15,13 @@ export const signUpValidator = object({
     'kindly provide  user E-mail is required for this user'
   ),
   phoneNumber: number().required('phone number is required for this user'),
-  role: string().required('role is required for this user')
+  // role: string().required('role is required for this user')
 });
 
 //
 
 export const loginValidator = object({
   email: string().required('email is required for login'),
-  password: string().required('password is required for login')
+  password: string().required('password is required for login'),
+  role: mixed().oneOf(ROLES).defined()
 });
