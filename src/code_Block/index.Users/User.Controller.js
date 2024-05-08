@@ -69,7 +69,7 @@ export const deleteController = async (req, res) => {
   const { id } = req.params;
   if (isValidObjectId(id)) {
     const deleteAccount = await deleteAccountService(id);
-    console.log(deleteAccount);
+    // console.log(deleteAccount);
     if (!deleteAccount) {
       return res.status(400).json({
         response: deleteAccount,
@@ -87,9 +87,9 @@ export const deleteController = async (req, res) => {
 };
 
 export const loginController = async (req, res) => {
-  const { email, password, roles } = req.body;
+  const { email, password, role } = req.body;
 
-  const loginUser = await loginService({ email, password, roles });
+  const loginUser = await loginService({ email, password, role });
   if (!loginUser) {
     return res.status(401).json({
       Title: 'Error occured while Loging in ',

@@ -148,6 +148,7 @@ export const deleteAccountService = async (id) => {
 export const loginService = async (obj) => {
   const DTO = await loginValidator.validate(obj);
 
+
   if (!DTO) {
     return {
       type: false,
@@ -158,13 +159,12 @@ export const loginService = async (obj) => {
   const DB = await _User.find({ email: DTO.email });
 
   const DBpassword = DB[0].password;
-  const email = DTO.email;
 
-  const isEmailExist = await _User.findOne({ email });
-  if (!isEmailExist) {
-    console.log('Kindly enter the correct data');
-    return `Kindly enter the correct data , ${isEmailExist}`;
-  }
+  // const isEmailExist = await _User.findOne({  DTO.email });
+  // if (!isEmailExist) {
+  //   console.log('Kindly enter the correct data');
+  //   return `Kindly enter the correct data , ${isEmailExist}`;
+  // }
 
   // const isFinderExist = await findLogin(_User)(DTO.user)(DTO.password);
 

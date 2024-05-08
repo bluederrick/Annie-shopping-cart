@@ -12,11 +12,11 @@ const restrictUsersAuthentication_ = (obj, _R, next) => {
   //  authorization = bearer <token>
   // console.log(authHeaderToken);
   const Token = authHeaderToken && authHeaderToken.split(' ')[1];
-  console.log(Token);
+  // console.log(Token);
   if (Token == null) return _R.status(401);
 
   const verified = verifyToken(Token, SECRET_KEY, obj);
-  console.log(verified);
+  // console.log(verified);
   !verified == null
     ? _R.status(422).json({
         type: false,
@@ -28,7 +28,7 @@ const restrictUsersAuthentication_ = (obj, _R, next) => {
         Title: 'Authorized',
         message: 'Validate Token'
       });
-  console.log();
+
   next();
 };
 
@@ -43,7 +43,7 @@ const AdminAuthorization_validation = (obj, _R, next) => {};
 export const adminAuthorized = (req, res, next) => {
   const isToken = getUserToken(req);
 
-  console.log(isToken);
+  // console.log(isToken);
   if (!isToken) return res.status(403).send(`unAthorized access ${isToken}`);
   //  Verify Token provided by User
 
@@ -65,7 +65,15 @@ export const adminAuthorized = (req, res, next) => {
       console.log(decoded);
       req.data = decoded.role;
       console.log(req.data);
+      if (!req.data === ADMIN) {
+        console.log('Aunthorized');
+        return res.status(403).json({
+          message: 'Aunthorized request'
+        });
+      }
+      // console.log(req.data);
     });
+    next();
 
     // Object.assign(req, {
     //   context: {
@@ -75,5 +83,6 @@ export const adminAuthorized = (req, res, next) => {
 
     //  req.Role =
   });
-  console.log(isVerified);
+
+  // console.log(isVerified);
 };
