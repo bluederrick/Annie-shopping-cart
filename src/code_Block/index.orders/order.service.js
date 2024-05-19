@@ -107,10 +107,22 @@ export const deleteOrderService = async (id) => {
   });
 };
 
-export const getAllOrderService = async () => {
+export const getAllOrderService = async (page, size) => {
+  // pagination
+  if (!page) {
+    // set to the default page
+    page = 1;
+  }
+  if (!size) {
+    size = 10;
+  }
+
+  const limit = parseInt(size);
+  const skip = (page - 1) * size;
   // get all orders from the database
 
-  const getOrdersAll = await Order.find({});
+  const getOrdersAll = await Order.find({}, {}, { limit: limit, skip: skip });
+  // const getOrdersAll =await Order.find().limit(limit).skip(skip)
   console.log(getOrdersAll);
   if (!getOrdersAll) {
     return {

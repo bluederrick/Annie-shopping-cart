@@ -88,6 +88,7 @@ export const deleteController = async (req, res) => {
 
 export const loginController = async (req, res) => {
   const { email, password, role } = req.body;
+  console.log(role);
 
   const loginUser = await loginService({ email, password, role });
   if (!loginUser) {

@@ -44,45 +44,37 @@ export const adminAuthorized = (req, res, next) => {
   const isToken = getUserToken(req);
 
   // console.log(isToken);
-  if (!isToken) return res.status(403).send(`unAthorized access ${isToken}`);
+  if (!isToken || isToken === undefined) {
+    return res.status(403).send(`unAthorized access ${isToken}`);
+  }
   //  Verify Token provided by User
 
   const isVerified = jwt.verify(isToken, SECRET_KEY, (err, decoded) => {
-    new Promise((resolve, reject) => {
-      if (err)
-        resolve({
-          res: err.message,
-          Type: false,
-          message: `Invalid token`
-        });
-
-      resolve({
-        Data: decoded,
-        Type: true,
-        message: `Valid token for Admin`
-      });
-
-      console.log(decoded);
-      req.data = decoded.role;
-      console.log(req.data);
-      if (!req.data === ADMIN) {
-        console.log('Aunthorized');
-        return res.status(403).json({
-          message: 'Aunthorized request'
-        });
-      }
-      // console.log(req.data);
+    if (err) {
+      return {
+        res: err.message,
+        Type: false,
+        message: `Invalid token`
+      };
+    }
+    ({
+      Data: decoded,
+      Type: true,
+      message: `Valid token for Admin`
     });
+
+    // console.log(decoded);
+    req.data = decoded.role;
+    // console.log(req.data);
+    if (!req.data === 'ADMIN') {
+      console.log('Aunthorized');
+      return res.status(403).json({
+        message: 'Aunthorized request'
+        // });
+      });
+      // console.log(req.data);
+    }
     next();
-
-    // Object.assign(req, {
-    //   context: {
-    //     decode: decode.role
-    //   }
-    // });
-
-    //  req.Role =
   });
-
-  // console.log(isVerified);
+  console.log(isVerified);
 };

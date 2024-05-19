@@ -36,7 +36,8 @@ export const deleteOrderControllers = async (req, res) => {
 // export const UpdateOrderControllers =()=>>{};
 
 export const getAllOrderControllers = async (req, res) => {
-  const getListOrder = await getAllOrderService();
+  const { page, size } = req.query;
+  const getListOrder = await getAllOrderService(page, size);
   if (!getListOrder || getListOrder == null) {
     return res.status(404).json({
       message: 'error!!!! could not fetch list of orders ',

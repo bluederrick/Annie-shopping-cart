@@ -146,9 +146,9 @@ export const deleteAccountService = async (id) => {
 };
 
 export const loginService = async (obj) => {
+  console.log(obj);
   const DTO = await loginValidator.validate(obj);
-
-
+  console.log(DTO);
   if (!DTO) {
     return {
       type: false,
