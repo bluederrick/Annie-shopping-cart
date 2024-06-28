@@ -6,5 +6,5 @@ const exco = (error, success) => {
     return success;
   }
 };
-
 export default exco;
+

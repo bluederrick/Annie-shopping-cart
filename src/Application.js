@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-import productRouter from './code_Block/index.products/product.router.js';
-import usersRouter from './code_Block/index.users/user.router.js';
-import deleteRouter from './code_Block/index.Users/User.router.js';
-import categoryRouter from './code_Block/index.category/category.route.js';
-import orderRouter from './code_Block/index.orders/order.router.js';
+import productRouter from './App/Products/Router/product.router.js';
+import usersRouter from './App/Users/user.router.js';
+import deleteRouter from './App/Users/user.router.js';
+import categoryRouter from './App/Category/category.route.js';
+import orderRouter from './App/Orders/order.router.js';
+import paymentRouter from './App/Payment/Router/index.js';
+import _DB from './db/database.js';
 
 const app = express();
 // cors conifiguration
@@ -43,6 +45,7 @@ app.use(categoryRouter);
 app.use(productRouter);
 app.use(orderRouter);
 app.use(usersRouter);
+app.use(paymentRouter);
 // app.use('/api/v1', AdminClientRoutes);
-
+_DB();
 export default app;

@@ -1,8 +1,6 @@
 import { createOrderService, getAllOrderService } from './order.service.js';
-
 export const addOrderControllers = async (req, res) => {
   //      const {quantity,price,shippingAddress,phoneNumber,status,user}= req.body;
-
   const orderDetails = await createOrderService(req.body);
   console.log(orderDetails);
   if (orderDetails === null) {
@@ -18,7 +16,7 @@ export const addOrderControllers = async (req, res) => {
     type: true
   });
 };
-
+// delete orders sent from customer
 export const deleteOrderControllers = async (req, res) => {
   const { id } = req.params;
   const deleteOrder = await deleteOrderService(id);
@@ -32,7 +30,6 @@ export const deleteOrderControllers = async (req, res) => {
     statusType: 'success'
   });
 };
-
 // export const UpdateOrderControllers =()=>>{};
 
 export const getAllOrderControllers = async (req, res) => {

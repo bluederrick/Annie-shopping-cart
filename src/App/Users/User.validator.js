@@ -1,13 +1,11 @@
 import { object, date, mixed, number, string } from 'yup';
-import { gender, ROLES } from '../../utilitiy/constants.js';
-
+import { gender, ROLES } from '../../Utilitiy/constants.js';
 export const UserValidator = object({
   name: string().required('name is required for this user'),
   username: string().required(' username is required '),
   password: string().required(' password is required'),
   sex: mixed().oneOf(gender).defined()
 });
-
 export const signUpValidator = object({
   firstName: string().required(' firstname is a required feild'),
   lastName: string().required(' lastname is  a required field '),
@@ -17,9 +15,6 @@ export const signUpValidator = object({
   phoneNumber: number().required('phone number is required for this user')
   // role: string().required('role is required for this user')
 });
-
-//
-
 export const loginValidator = object({
   email: string().required('email is required for login'),
   password: string().required('password is required for login'),

@@ -1,38 +1,34 @@
 import { createServer } from 'http';
 import app from './Application.js';
-import config from './config.js';
-import { Logger } from './utilitiy/logger.js';
-import { _Level } from './utilitiy/constants.js';
-import customError from './utilitiy/customError.js';
+import config from './Config.js';
+import { logger } from './Utilitiy/logger.js';
+import { _Level } from './Utilitiy/constants.js';
+import customError from './Utilitiy/customImpl.js';
 import winston from 'winston';
-import _DB from './DBconnection./DBconnectivity.js';
-import router from './code_Block/index.products/product.router.js';
+// import _DB from './DBconnection./DBconnectivity.js';
+import router from './App/Products/Router/product.router.js';
 import { GenerateOTP } from './Generic services/generateOTP.js';
 import fs from 'fs';
-_DB();
-
-// LOG_stack()
-const log = new Logger();
-log.loggerStack();
 // console.log(new customError(400, "Invalid ", "failed"))
 const server = createServer(app);
-
+// create server instance
 server.listen(config.PORT, () => {
-  winston.log('error', `listening on port ${config.HOST}:${config.PORT} `);
-  console.log(`listening on port ${config.HOST}:${config.PORT} `);
+  //  logger.error('error', `listening on port ${config.HOST}:${config.PORT} `);
+  // console.log(`listening on port ${config.HOST}:${config.PORT} `);
+  logger.log('info', `listening on port ${config.HOST}:${config.PORT} `);
 });
-
 // handle uncaught exceptions sychronus operations
 process.on('uncaughtException', (err) => {
+  // process.on is to listen to uncaught exceptions , then it does it excutes the call back function
   // winston.log(_Level[0], 'derrick');
-  winston.error('error', err.message, err.name);
+  logger.log(_Level[0], err.message, err.name);
   console.log('unhandledException error is:', err.message, err.name);
-  fs.writeFileSync('error.txt', err.message);
+  server.close();
   process.exit(1);
 });
-
+console.log(u);
 process.on('unhandledRejection', (err) => {
   console.log(err);
-  winston.log(_Level[1], err.message);
+  logger.log('error', err.message);
   process.exit(1);
 });

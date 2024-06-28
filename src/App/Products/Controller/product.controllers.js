@@ -3,7 +3,7 @@ import {
   deleteProductService,
   getAllProductServices
 } from './products.service.js';
-
+// Get  or retrieve All products 
 export const productController = async (req, res) => {
   const services = await getAllProductServices();
   console.log(services);
@@ -12,7 +12,7 @@ export const productController = async (req, res) => {
     services
   });
 };
-
+// Add pproducts to the databse
 export const AddProductsController = async (req, res) => {
   const {
     productTitle,
@@ -49,10 +49,9 @@ export const AddProductsController = async (req, res) => {
   });
   return addedProducts;
 };
-
+// Ti delete products from data
 export const deleteProductController = async (req, res) => {
   const { id } = req.params;
-
   const productDeleted = await deleteProductService(id);
   console.log(productDeleted, 'derrick mark');
   if (productDeleted == null || !productDeleted) {
@@ -67,7 +66,6 @@ export const deleteProductController = async (req, res) => {
     productDeleted
   });
 };
-
 // export const restrict = restrictUsersAuthentication_(req, res, next);
 export const updatedProduct = async (req, res) => {
   const id = req.params.id;
@@ -82,3 +80,21 @@ export const updatedProduct = async (req, res) => {
 };
 
 export const productCountControllers = (req, res) => {};
+
+// search product by category to List all products for that category ;
+export const searchProductsCategoryController = async (req, res) => {
+  const { categoryId } = req.params;
+
+  const productsCategoryDetails = await categoryPorductService({ categoryId });
+
+  if (!productsCategoryDetails) {
+    return res.status(401).json({
+      message: 'Category not found',
+      Type: false
+    });
+    return res.status(200).json({
+      details: productsCategoryDetails,
+      Type: True
+    });
+  }
+};

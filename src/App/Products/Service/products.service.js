@@ -1,10 +1,10 @@
 import Product from '../../Models/Products.js';
-import customError from '../../utilitiy/customError.js';
+import customError from '../../Utilitiy/customImpl.js';
 import { v4 as uuid } from 'uuid';
-const errorStack = new customError(400, 'Product not found');
+// const errorStack = new customError(400, 'Product not found');
 import mongoose from 'mongoose';
 
-import { StatusCode } from '../../utilitiy/status.js';
+import { StatusCode } from '../../Utilitiy/status.js';
 import { productSchema } from './products.validator.js';
 import Category from '../../Models/Category.js';
 
@@ -106,6 +106,13 @@ export const updateProductService = async (data) => {
   return updateProduct;
 };
 
+//  get a product by category
+export const getProductByCategory = async () => {
+  // popuate will return any connected id to prducts e.g category
+  const productCategory = Product.findById(id).populate('Category');
+};
+
+// delete a prodct
 export const deleteProductService = async (id) => {
   const products = await Product.findOneAndDelete({ _id: id });
   console.log(products);

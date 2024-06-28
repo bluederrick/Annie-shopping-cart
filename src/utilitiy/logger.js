@@ -1,76 +1,41 @@
-import winston from 'winston';
-import { _Level } from '../utilitiy/constants.js';
-import config from '../config.js';
+import { createLogger, transports, format, addColors } from 'winston';
+import { _Level } from './constants.js';
+import config from '../Config.js';
 import { existsSync, mkdirSync } from 'fs';
-// const { combine, timestamp, label, prettyPrint, simple, jso } = format;
-
-const myFormat = winston.format.printf(
-  ({ level, message, label, timestamp }) => {
-    return `${timestamp} [${label}] ${level}: ${message}`;
+const { combine, timestamp, label, prettyPrint, colorize } = format;
+const myCustomLevels = {
+  levels: {
+    foo: 0,
+    bar: 1,
+    baz: 2,
+    foobar: 3
+  },
+  colors: {
+    foo: 'blue',
+    bar: 'green',
+    baz: 'yellow',
+    foobar: 'red'
   }
-);
-// export const LOG_stack = () => {
+};
+// addColors();
 
-//     if (!existsSync('combined')) {
-//         console.log("Creating the file")
-
-//         mkdirSync('combined');
-//     }
-
-//     else {
-//         null
-
-//     }
-
-//
-//         winston.createLogger({
-//             level: 'info',
-//             format: winston.format.combine(
-//                 winston.format.timestamp(),
-//                 myFormat
-//             ),
-//             transports: [
-//                 new winston.transports.Console(),
-//                 new winston.transports.File({ filename: 'combined/combined.log' })
-//             ]
-//         });
-//
-//     return true;
-
-// };
-
-// import { default: logger } from "../Loggers/logger";
-
-export class Logger {
-  loggerStack() {
-    if (!existsSync('combined')) {
-      console.log('Creating the file');
-
-      mkdirSync('combined');
-    } else {
-      null;
-    }
-
-    logger: winston.createLogger({
+export const logger = createLogger({
+  transports: [
+    new transports.File({
+      filename: 'error.log',
+      level: 'error',
+      format: format.json()
+    }),
+    new transports.File({
+      filename: 'combined.log',
       level: 'info',
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        myFormat,
-        winston.format.json()
-      ),
-      transports: [
-        new winston.transports.Console(),
-        new winston.transports.File({
-          filename: 'combined/combined.log',
-          level: 'error'
-        })
-      ]
-    });
-    // if (process.env.NODE_ENV !== 'production') {
-    //     logger.add(new winston.transports.File({
-    //         format: winston.format.simple(),
-    //         filename: 'combined/combined.log'
-    //     }));
-    // }
-  }
-}
+      format: format.json()
+    }),
+    new transports.Http({
+      level: 'warn',
+      format: format.json()
+    })
+  ]
+});
+
+// }

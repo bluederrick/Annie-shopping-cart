@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import config from '../config.js';
+import config from '../Config.js';
 import { handleErrors } from './errorHandlers.js';
+import { logger } from './logger.js';
 const REFRESH_KEY = config.REFRESH_KEY;
 
 const key = { key: process.env.SECRET_KEY };
@@ -61,7 +62,6 @@ export const verifyToken = (tokenData, Secret, req) => {
       };
     }
     req.data = decoded.role;
-    console.log();
   });
   next();
 };
@@ -70,8 +70,6 @@ export const getUserToken = (obj) => {
   const authHeaderToken = obj.headers['authorization'];
   const AdminToken = authHeaderToken && authHeaderToken.split(' ')[1];
   return AdminToken;
-  // console.log(authHeaderToken);
-  // if (authHeaderToken == null)
-  // return 'Kindly provide a Token for authentification purposes';
+
   return authHeaderToken;
 };

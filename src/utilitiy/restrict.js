@@ -1,6 +1,6 @@
 import { getUserToken, verifyToken } from './token.js';
 import express from 'express';
-import config from '../config.js';
+import config from '../Config.js';
 const SECRET_KEY = config.SECRET_KEY;
 import jwt from 'jsonwebtoken';
 

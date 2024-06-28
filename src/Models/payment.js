@@ -1,4 +1,4 @@
-mport mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 const paymentSchema = new mongoose.Schema({
   fullName: {
@@ -9,7 +9,7 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  amount: {
+  receiptId: {
     type: Number,
     required: true
   },
@@ -24,6 +24,5 @@ const paymentSchema = new mongoose.Schema({
   }
   timeStamp: true
 });
-
-
-export default = mongoose.model('paymentModel',paymentSchema)
+const payment= mongoose.model('Payments', paymentSchema);
+export default payment;

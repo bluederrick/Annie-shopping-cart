@@ -1,8 +1,7 @@
-import config from '../config.js';
+import config from '../Config.js';
 import nodemailer from 'nodemailer';
 const { EMAIL_ADDRESS, EMAIL_PASSWORD, EMAIL_HEADER } = config;
 // let transporter = nodemailer.createTransport(options[, defaults])
-
 // create a transporter
 export const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -14,12 +13,11 @@ export const transporter = nodemailer.createTransport({
     pass: EMAIL_PASSWORD
   }
 });
-
 // test the transporter
-
 transporter.verify((err, result) => {
   if (err) {
     console.log(err);
+    return err;
   }
   console.log(result);
   return result;

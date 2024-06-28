@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-
 export const PasswordEncoded = (generic) => (num) => {
   bcrypt.hash(generic, num, (err, hash) => {
     if (err) {

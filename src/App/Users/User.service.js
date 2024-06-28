@@ -1,18 +1,18 @@
 import _User from '../../Models/User.js';
 import { GenerateOTP } from '../../Generic services/generateOTP.js';
-import { duplicateDTO, findLogin } from '../../utilitiy/DB_Executer.js';
-import { accessToken, refreshToken } from '../../utilitiy/token.js';
+import { duplicateDTO, findLogin } from '../../Utilitiy/DB_Executer.js';
+import { accessToken, refreshToken } from '../../Utilitiy/token.js';
 import jwt from 'jsonwebtoken';
 import { loginValidator, signUpValidator } from './User.validator.js';
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
-import config from '../../config.js';
-import { user } from '../../utilitiy/Fn.excute.js';
+import config from '../../Config.js';
+import { user } from '../../Utilitiy/Fn.excute.js';
 import _Otp from '../../Models/useOTPVerificaition.js';
 import {
   sendOTPVerfication,
   verifyOTPservice
-} from '../OTPverification.js/OTP.service.js';
+} from '../Otp/service/Otpservice.js';
 const TOKENKEY = 'tokenkey';
 const SECRET_KEY = config.SECRET_KEY;
 const REFRESH_KEY = config.REFRESH_KEY;
@@ -205,5 +205,17 @@ export const loginService = async (obj) => {
     refreshToken: refresherToken
   };
 };
+export const updatePassword = async (id, newPassword, oldPassword) => {
+  const udpateUser = await _User.findById(id);
+  if (!udpateUser) {
+    return {
+      Type: false,
+      user: "userId doesn't exist"
+    };
+  }
+  const oldPasswordExist = udpateUser.password;
+  const isExistPassword = await bcrypt.compare(oldPasswordExist, oldPassword);
+  const _udatdePassword = await bcrypt.hash(newPassword, 10);
 
-export const updateUserInfo = () => {};
+  const updatedField = await _User.findByIdAndUpdate(id, _udatdePassword);
+};

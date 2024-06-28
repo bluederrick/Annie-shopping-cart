@@ -6,7 +6,6 @@ export const FindAll = (model) => {
       console.log(err.message);
     });
 };
-
 export const FindOne = (model) => {
   model
     .findOne()

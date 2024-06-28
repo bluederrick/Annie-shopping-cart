@@ -4,7 +4,7 @@ const roleAuthPage = (permission) => {
   if (permission.includes(userRole)) {
     next();
   }
-  return res.status(401).json('you dont hve permission');
+  return res.status(401).json('you dont have permission');
 };
 
 export default roleAuthPage;

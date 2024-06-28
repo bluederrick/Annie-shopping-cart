@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-import { STATE } from '../utilitiy/constants.js';
-const {ACTIVE, NON_ACTIVE, PENDING} = STATE
+import { STATE } from '../Utilitiy/constants.js';
+const { ACTIVE, NON_ACTIVE, PENDING } = STATE;
 const orderSchema = new Schema({
   // orderitems is an array of Id's  from the order table
   orderItems: [

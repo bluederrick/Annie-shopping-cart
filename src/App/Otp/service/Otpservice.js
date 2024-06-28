@@ -1,40 +1,34 @@
-import _Otp from '../../Models/useOTPVerificaition.js';
-import { GenerateOTP } from '../../Generic services/generateOTP.js';
+import _Otp from '../../../Models/useOTPVerificaition.js';
+import { GenerateOTP } from '../../../Generic services/generateOTP.js';
 import bcrypt from 'bcrypt';
-import { transporter } from '../../Generic services/sendMail.js';
-import { sendEmail } from '../../Generic services/EmailService.js';
-import _User from '../../Models/User.js';
+import { transporter } from '../../../Generic services/sendMail.js';
+import { sendEmail } from '../../../Generic services/EmailService.js';
+import _User from '../../../Models/User.js';
 import { config } from 'dotenv';
-import exco from '../../utilitiy/helper.js';
+import exco from '../../../Utilitiy/helper.js';
 const { EMAIL_ADDRESS, EMAIL_PASSWORD, EMAIL_HEADER } = config;
 const salt = 10;
 let Email;
 let id;
-
 //  send OTP TO RECIVER E-MAIL
 export const sendOTPVerfication = async (data) => {
   const isEmailExist = _User.findOne({ email: data.email });
   if (isEmailExist == false) {
     return {
-      status: 'Error wroong E-mail',
+      status: 'Error wrong E-mail',
       message: 'Please enter your  email address '
     };
   }
-
   const otp = GenerateOTP(6);
   if (!otp) {
     return {
-      title: 'OTP failure',
       message: 'something went wrong'
     };
   }
-
   Email = data.email;
   id = data.id;
-
   //  test your transporter
   transporter.verify(exco());
-
   // GENERATE MAIL OPTIONS:
   const mailOptions = {
     from: EMAIL_ADDRESS,
@@ -75,9 +69,7 @@ export const sendOTPVerfication = async (data) => {
     };
     // transporter.close();
   });
-
   console.log(mail);
-
   const sendMail = async (transporter, mail) => {
     console.log('derrick');
     try {
@@ -88,7 +80,6 @@ export const sendOTPVerfication = async (data) => {
       console.log(e);
     }
   };
-
   const transportedData = await transporter.sendMail(mailOptions);
   console.log(transportedData, 'transport');
   if (!transportedData) {

@@ -1,5 +1,4 @@
 import { isValidObjectId } from 'mongoose';
-
 import {
   deleteAccountService,
   loginService,
@@ -19,10 +18,6 @@ export const SignUpController = async (req, res) => {
     verified,
     isAdmin
   } = req.body;
-
-  // ASSIGN USER ROLE TO REQ.BODY
-
-  // console.log(req.body)
   const services = await signUpService({
     _id,
     firstName,
@@ -35,11 +30,9 @@ export const SignUpController = async (req, res) => {
     isAdmin
   });
   services
-    ? // Assign req touser
-      // req.userData=users
-
-      res.status(200).json({
-        response: services
+    ? res.status(200).json({
+        response: services,
+        type: true
       })
     : res.status(400).json({
         response: services,
@@ -47,7 +40,6 @@ export const SignUpController = async (req, res) => {
         message: 'signup failed'
       });
 };
-
 export const verifyOTPcontroller = async (req, res) => {
   const { id } = req.params;
   const { otp } = req.body;
@@ -69,7 +61,6 @@ export const deleteController = async (req, res) => {
   const { id } = req.params;
   if (isValidObjectId(id)) {
     const deleteAccount = await deleteAccountService(id);
-    // console.log(deleteAccount);
     if (!deleteAccount) {
       return res.status(400).json({
         response: deleteAccount,
@@ -83,13 +74,9 @@ export const deleteController = async (req, res) => {
       message: 'Delete Account successfully'
     });
   }
-  // console.log(ObjectId.isValid(id)
 };
-
 export const loginController = async (req, res) => {
   const { email, password, role } = req.body;
-  console.log(role);
-
   const loginUser = await loginService({ email, password, role });
   if (!loginUser) {
     return res.status(401).json({
@@ -97,10 +84,26 @@ export const loginController = async (req, res) => {
       Type: false
     });
   }
-
   return res.status(200).json({
     response: loginUser,
     type: true,
     message: `Login successful`
   });
+};
+
+// change password
+export const updatePasswordController = (req, res) => {
+  const { id } = req.params;
+  const { newPassword, oldPassword } = req.body;
+  const updatePassword = udatePasswordService(id, password);
+  if (!updatePassword) {
+    return res.redirect;
+  }
+
+  return res.status(200).json(updatePassword);
+};
+
+export const updatePhoneNumber = () => {
+  const { id } = req.params;
+  const { phoneNumber } = req.body;
 };

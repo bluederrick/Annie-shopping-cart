@@ -4,7 +4,7 @@ import {
   deleteOrderControllers,
   getAllOrderControllers
 } from './order.controller.js';
-import { adminAuthorized, authorizedUser } from '../../utilitiy/restrict.js';
+import { adminAuthorized, authorizedUser } from '../../Utilitiy/restrict.js';
 
 const router = express.Router();
 

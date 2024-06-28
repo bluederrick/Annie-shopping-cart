@@ -1,5 +1,4 @@
 import { object, string, number, date } from 'yup';
-
 export const productSchema = object({
   productTitle: string().required(),
   description: string().required(),
