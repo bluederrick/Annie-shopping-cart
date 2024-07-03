@@ -2,7 +2,6 @@ import { createOrderService, getAllOrderService } from './order.service.js';
 export const addOrderControllers = async (req, res) => {
   //      const {quantity,price,shippingAddress,phoneNumber,status,user}= req.body;
   const orderDetails = await createOrderService(req.body);
-  console.log(orderDetails);
   if (orderDetails === null) {
     return res.status(404).json({
       message: 'Order could not be added',

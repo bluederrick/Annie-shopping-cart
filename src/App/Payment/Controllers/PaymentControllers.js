@@ -56,31 +56,36 @@ export const transactions = async (req, res) => {
   }
   return res.status(200).json({ message: initializedResult.data, type: true });
 };
-
 // verify payment transaction details;
 export const verifiyTransactionPaymentRequest = async (req, res) => {
   // get referenceId from database
-  const paymentDTO = await payment.find();
-  const reference_Id = paymentDTO.receiptId;
-  console.log(reference_Id);
+  const paymentDTO = await payment.find({});
+  const reference = paymentDTO[0].receiptId;
   const verifyOptions = {
-    // hostname: 'api.paystack.co',
-    // port: 443,
+    port: 443,
     headers: {
       Authorization: 'Bearer sk_test_73d6705c2145f945820a0884ef6a47597d77f551'
     }
   };
 
   // verify options
-
   const verifyTransaction = await axios.get(
-    'https://api.paystack.co/transaction/verify/{reference_Id}',
+    `https://api.paystack.co/transaction/verify/${reference}`,
     verifyOptions
   );
   if (!verifyTransaction) {
     throw new Error();
-  } else {
-    console.log('verified transaction successfully', verifyTransaction);
-    return { data: verifyTransaction, type: true };
+    return error.stackTrace();
   }
+  // console.log(verifyTransaction);
+
+  return res.json({ data: verifyTransaction }).status(200);
+  // return res.status(200).json({ verifyTransaction, type: true });
+};
+
+// lIST ALL TRANSACTIONS
+export const listAllTransactions = async (req, res) => {
+  const verifyTransaction = await axios.get(
+    `https://api.paystack.co/transaction`
+  );
 };

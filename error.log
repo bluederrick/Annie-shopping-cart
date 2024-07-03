@@ -27,3 +27,28 @@
 {"level":"error","message":"Request failed with status code 400"}
 {"level":"error","message":"Request failed with status code 400"}
 {"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Request failed with status code 400"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"error","message":"CircularJSON is not defined"}

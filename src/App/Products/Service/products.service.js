@@ -81,7 +81,6 @@ export const createProductsService = async (data) => {
     });
   return newProducts;
 };
-
 export const updateProductService = async (data) => {
   const productDTO = await productSchema.validate(data);
   const categoryDTO = productDTO.category;
