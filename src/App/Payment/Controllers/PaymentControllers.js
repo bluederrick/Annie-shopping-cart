@@ -85,7 +85,66 @@ export const verifiyTransactionPaymentRequest = async (req, res) => {
 
 // lIST ALL TRANSACTIONS
 export const listAllTransactions = async (req, res) => {
-  const verifyTransaction = await axios.get(
-    `https://api.paystack.co/transaction`
+  const listOptions = {
+    port: 443,
+    headers: {
+      Authorization: 'Bearer sk_test_73d6705c2145f945820a0884ef6a47597d77f551'
+    }
+  };
+
+  const listTransaction = await axios.get(
+    `https://api.paystack.co/transaction`,
+    listOptions
   );
+  if (!listTransaction) {
+    return res.status(404);
+    // .json({ message: 'error occured while getting request' });
+  }
+
+  console.log(listTransaction);
+  return res.status(200);
 };
+
+export const fetchTransaction = async (req, res) => {
+  const { id } = req.params;
+  // check if id exist in the database
+  const existId = await  payment.findById({ _id: id });
+if(!existId ){
+ return res.status(404).json({
+  message:` invalid user id`
+  type: false
+ })
+}
+  const fetchMetdata = {
+    port: 443,
+    headers: {
+      Authorization: 'Bearer sk_test_73d6705c2145f945820a0884ef6a47597d77f551'
+    }
+    const getTransaction = await axios.get(
+    `https://api.paystack.co/transaction`,
+    fetchMetdata
+  );
+  if (!getTransaction) {
+    return res.status(404);
+  }
+  };
+  console.log(getTransaction);
+  return res.status(200);
+};
+
+
+
+// chargeAuthorization 
+export const chargeAuthorization = async(req, res) => {
+const charge_metadata = {
+    port: 443,
+    headers: {
+      Authorization: 'Bearer sk_test_73d6705c2145f945820a0884ef6a47597d77f551',
+      'Content-Type': 'application/json'
+    }
+  const chargeAuth= await axios.post({
+    `https://api.paystack.co/transaction/charge_authorization`,
+    charge_metadata 
+  })
+};
+}

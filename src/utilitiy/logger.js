@@ -1,6 +1,6 @@
 import { createLogger, transports, format, addColors } from 'winston';
 import { _Level } from './constants.js';
-import config from '../Config.js';
+import config from '../Application.properties.js';
 import { existsSync, mkdirSync } from 'fs';
 const { combine, timestamp, label, prettyPrint, colorize } = format;
 const myCustomLevels = {

@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build_test": "babel src -d lib",
+    "build_test": "babel src -d build",
     "dev": "nodemon src/server.js",
-    "start": "nodemon --exec babel-node src/server.js",
-    "build": "babel server.js — src build.js"
+    "start": "nodemon --exec babel-node src/Server.js",
+    "build": "babel Server.js — src build.js"
   },
   "keywords": [],
   "author": "",

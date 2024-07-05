@@ -547,3 +547,27 @@ info: listening on port http://localhost:5000
 {"level":"info","message":"listening on port http://localhost:5000 "}
 {"level":"info","message":"listening on port http://localhost:5000 "}
 {"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"error","message":"Converting circular structure to JSON\n    --> starting at object with constructor 'ClientRequest'\n    |     property 'res' -> object with constructor 'IncomingMessage'\n    --- property 'req' closes the circle"}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
+{"level":"info","message":"listening on port http://localhost:5000 "}
